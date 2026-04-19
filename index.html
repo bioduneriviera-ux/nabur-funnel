@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nabür — Obtenez votre coupon -7%</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#f5f5f0;font-family:'DM Sans',sans-serif;min-height:100vh;}
+.funnel{max-width:480px;margin:0 auto;padding:0 0 2rem;}
+.hero{background:#1a1a1a;padding:2rem 1.5rem 1.5rem;text-align:center;color:white;}
+.brand-logo{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;letter-spacing:4px;color:white;margin-bottom:4px;}
+.brand-sub{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.5);text-transform:uppercase;}
+.hero-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:white;margin-top:1.5rem;margin-bottom:8px;line-height:1.3;}
+.legal-notice{font-size:10px;color:rgba(255,255,255,0.45);line-height:1.6;margin-top:1rem;padding:0 0.5rem;}
+.body{padding:1.5rem;}
+.step-counter{text-align:center;font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.step-counter span{color:#333;font-weight:500;}
+.steps-bar{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:1.5rem;}
+.dot{width:8px;height:8px;border-radius:50%;background:#ddd;transition:all 0.2s;}
+.dot.active{background:#1a1a1a;width:24px;border-radius:4px;}
+.dot.done{background:#888;}
+.step{display:none;}
+.step.active{display:block;}
+.how-it-works{background:white;border-radius:12px;padding:1.25rem;margin-bottom:1.5rem;border:0.5px solid #e8e8e8;}
+.how-title{font-size:13px;font-weight:500;color:#1a1a1a;margin-bottom:1rem;text-align:center;}
+.how-steps{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.how-step{text-align:center;}
+.how-num{width:28px;height:28px;border-radius:50%;background:#1a1a1a;color:white;font-size:13px;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.how-step-title{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:3px;}
+.how-step-sub{font-size:11px;color:#888;line-height:1.4;}
+.step-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#1a1a1a;margin-bottom:4px;text-align:center;}
+.step-sub{font-size:13px;color:#888;text-align:center;margin-bottom:1.25rem;line-height:1.5;}
+.search-bar{width:100%;font-size:13px;padding:9px 12px;border:0.5px solid #ddd;border-radius:8px;background:white;color:#1a1a1a;margin-bottom:1rem;}
+.search-bar:focus{outline:none;border-color:#1a1a1a;}
+.cat-tabs{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;}
+.cat-tab{padding:5px 12px;border:0.5px solid #ddd;border-radius:12px;font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif;background:white;color:#888;}
+.cat-tab.active{background:#1a1a1a;color:white;border-color:#1a1a1a;}
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.prod-card{border:0.5px solid #e8e8e8;border-radius:12px;padding:12px 10px 10px;cursor:pointer;background:white;transition:border-color 0.15s;text-align:center;}
+.prod-card:hover{border-color:#bbb;}
+.prod-card.selected{border:1.5px solid #1a1a1a;background:#f9f9f7;}
+.prod-icon{width:52px;height:52px;margin:0 auto 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.prod-name{font-size:12px;font-weight:500;color:#1a1a1a;line-height:1.3;margin-bottom:4px;}
+.prod-weight{font-size:11px;color:#888;margin-bottom:5px;}
+.prod-flags{display:flex;justify-content:center;gap:2px;flex-wrap:wrap;}
+.prod-flag{font-size:12px;line-height:1;}
+.prod-check{width:16px;height:16px;border-radius:50%;background:#1a1a1a;display:none;align-items:center;justify-content:center;margin:5px auto 0;}
+.prod-card.selected .prod-check{display:flex;}
+.selected-bar{background:#f9f9f7;border:0.5px solid #e8e8e8;border-radius:8px;padding:10px 14px;margin-bottom:1rem;font-size:13px;color:#888;display:none;align-items:center;gap:8px;}
+.selected-bar strong{color:#1a1a1a;}
+.count-info{font-size:11px;color:#888;text-align:center;margin-bottom:8px;}
+.card{background:white;border:0.5px solid #e8e8e8;border-radius:12px;padding:1.5rem;}
+.card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:6px;color:#1a1a1a;}
+.card-sub{font-size:13px;color:#888;margin-bottom:1.25rem;line-height:1.6;}
+.prod-recap{display:flex;align-items:center;gap:10px;background:#f9f9f7;border-radius:8px;padding:10px 12px;margin-bottom:1.25rem;}
+.prod-recap-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.prod-recap-name{font-size:13px;font-weight:500;color:#1a1a1a;}
+.prod-recap-flags{font-size:12px;margin-top:2px;}
+label{display:block;font-size:12px;font-weight:500;color:#888;margin-bottom:5px;letter-spacing:0.5px;}
+input[type=text],input[type=email]{width:100%;font-size:14px;padding:10px 12px;border:0.5px solid #ddd;border-radius:8px;background:white;color:#1a1a1a;margin-bottom:6px;}
+input:focus{outline:none;border-color:#1a1a1a;}
+.mkt-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem;}
+.mkt-btn{padding:9px 8px;border:0.5px solid #ddd;border-radius:8px;background:white;color:#888;font-size:12px;cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;}
+.mkt-btn.sel{border:1.5px solid #1a1a1a;color:#1a1a1a;background:#f9f9f7;}
+.find-order-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 14px;background:#e8f4fd;color:#0066cc;border:0.5px solid #99ccee;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:10px;text-decoration:none;}
+.order-hint{font-size:11px;color:#aaa;margin-bottom:1rem;}
+.tag-compliant{display:inline-flex;align-items:center;gap:5px;background:#e8f5e9;color:#3B6D11;font-size:10px;padding:3px 8px;border-radius:12px;margin-bottom:1rem;font-weight:500;}
+.coupon-reveal{background:#e8f5e9;border:0.5px solid #c8e6c9;border-radius:12px;padding:1.25rem;text-align:center;margin-bottom:1.25rem;}
+.coupon-label{font-size:12px;color:#3B6D11;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.coupon-code{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:500;letter-spacing:3px;color:#27500A;}
+.coupon-validity{font-size:11px;color:#3B6D11;margin-top:5px;}
+.copy-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px;background:#f5f5f0;color:#1a1a1a;border:0.5px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;}
+.divider{display:flex;align-items:center;gap:10px;margin:1.25rem 0;}
+.divider-line{flex:1;height:0.5px;background:#e8e8e8;}
+.divider-text{font-size:11px;color:#aaa;letter-spacing:1px;white-space:nowrap;}
+.review-box{border:0.5px solid #e8e8e8;border-radius:12px;padding:1.25rem;text-align:center;}
+.review-title{font-size:15px;font-weight:500;color:#1a1a1a;margin-bottom:5px;}
+.review-sub{font-size:12px;color:#888;line-height:1.5;margin-bottom:1rem;}
+.stars-display{font-size:20px;color:#EF9F27;letter-spacing:2px;margin-bottom:10px;}
+.amazon-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:#FF9900;color:#111;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.skip-link{display:block;text-align:center;font-size:12px;color:#aaa;margin-top:10px;cursor:pointer;text-decoration:underline;}
+.final-icon{font-size:40px;text-align:center;margin-bottom:12px;}
+.btn-main{width:100%;padding:12px;background:#1a1a1a;color:white;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;}
+.btn-main:disabled{opacity:0.35;cursor:default;}
+.btn-prev{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:11px;background:transparent;color:#888;border:0.5px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;}
+.err{font-size:12px;color:#e53935;margin-bottom:8px;display:none;}
+.loading{display:none;text-align:center;padding:1rem;font-size:13px;color:#888;}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid #ddd;border-top-color:#1a1a1a;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px;vertical-align:middle;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.faq{margin-top:2rem;padding-top:1.5rem;border-top:0.5px solid #e8e8e8;}
+.faq-title{font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:1rem;text-align:center;}
+.faq-item{border:0.5px solid #e8e8e8;border-radius:8px;margin-bottom:8px;overflow:hidden;background:white;}
+.faq-q{width:100%;padding:12px 14px;background:white;color:#1a1a1a;border:none;font-size:13px;font-weight:500;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;justify-content:space-between;align-items:center;gap:8px;}
+.faq-chevron{font-size:10px;color:#888;transition:transform 0.2s;flex-shrink:0;}
+.faq-q.open .faq-chevron{transform:rotate(180deg);}
+.faq-a{font-size:12px;color:#888;line-height:1.6;padding:0 14px 12px;display:none;}
+.faq-a.open{display:block;}
+.footer{text-align:center;margin-top:2rem;font-size:10px;color:#aaa;line-height:1.6;padding:0 1rem;}
+</style>
+</head>
+<body>
+<div class="funnel">
+  <div class="hero">
+    <div class="brand-logo">NABÜR</div>
+    <div class="brand-sub">Épices & infusions</div>
+    <div class="hero-title">Obtenez -7% sur votre prochaine commande</div>
+    <div class="legal-notice">Notre offre n'est en aucun cas conditionnée au retour que vous nous fournissez. Aucun achat supplémentaire n'est nécessaire.</div>
+  </div>
+
+  <div class="body">
+    <div class="step-counter" id="step-counter">Étape <span id="step-num">1</span> sur 4 — <span id="step-label">Choix du produit</span></div>
+    <div class="steps-bar">
+      <div class="dot active" id="d1"></div>
+      <div class="dot" id="d2"></div>
+      <div class="dot" id="d3"></div>
+      <div class="dot" id="d4"></div>
+    </div>
+
+    <div class="how-it-works" id="how-it-works">
+      <div class="how-title">Recevez votre coupon en 2 étapes simples</div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <div class="how-step-title">Remplissez le formulaire</div>
+          <div class="how-step-sub">Sélectionnez votre produit et vérifiez votre commande Amazon</div>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <div class="how-step-title">Recevez votre cadeau</div>
+          <div class="how-step-sub">Votre coupon -7% vous est envoyé immédiatement par email</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step active" id="s1">
+      <div class="step-title">Quel produit avez-vous acheté ?</div>
+      <div class="step-sub">Sélectionnez votre produit Nabür pour continuer</div>
+      <input class="search-bar" type="text" id="search" placeholder="Rechercher un produit..." oninput="render()" />
+      <div class="cat-tabs">
+        <button class="cat-tab active" onclick="setCat(this,'all')">Tous</button>
+        <button class="cat-tab" onclick="setCat(this,'poivre')">Poivres</button>
+        <button class="cat-tab" onclick="setCat(this,'the')">Thés & Infusions</button>
+        <button class="cat-tab" onclick="setCat(this,'encens')">Encens & Résines</button>
+        <button class="cat-tab" onclick="setCat(this,'epice')">Épices</button>
+        <button class="cat-tab" onclick="setCat(this,'soin')">Soins</button>
+      </div>
+      <div class="selected-bar" id="sel-bar">✓ Sélectionné : <strong id="sel-name">—</strong></div>
+      <div class="count-info" id="count-info"></div>
+      <div class="products-grid" id="grid"></div>
+      <div class="err" id="err1">Veuillez sélectionner un produit.</div>
+      <button class="btn-main" id="btn1" disabled onclick="goTo(2)">Continuer →</button>
+    </div>
+
+    <div class="step" id="s2">
+      <div class="card">
+        <div class="tag-compliant">✓ 100% conforme Amazon</div>
+        <div class="prod-recap">
+          <div class="prod-recap-icon" id="recap-icon"></div>
+          <div>
+            <div class="prod-recap-name" id="recap-name"></div>
+            <div class="prod-recap-flags" id="recap-flags"></div>
+          </div>
+        </div>
+        <div class="card-title">Votre commande</div>
+        <div class="card-sub">Vérifiez votre achat pour recevoir votre coupon -7%.</div>
+        <label>Marketplace</label>
+        <div class="mkt-grid">
+          <button class="mkt-btn sel" onclick="setMkt(this,'fr')">🇫🇷 amazon.fr</button>
+          <button class="mkt-btn" onclick="setMkt(this,'de')">🇩🇪 amazon.de</button>
+          <button class="mkt-btn" onclick="setMkt(this,'it')">🇮🇹 amazon.it</button>
+          <button class="mkt-btn" onclick="setMkt(this,'es')">🇪🇸 amazon.es</button>
+        </div>
+        <label>Numéro de commande Amazon</label>
+        <a class="find-order-btn" id="find-order-link" href="https://www.amazon.fr/gp/css/order-history" target="_blank">
+          <span>Trouver mon numéro de commande Amazon</span>
+          <span>›</span>
+        </a>
+        <input type="text" id="order" placeholder="ex: 406-1234567-8901234" />
+        <div class="order-hint">Format : 3 groupes de chiffres séparés par des tirets</div>
+        <div class="err" id="err2">Veuillez entrer un numéro de commande.</div>
+        <label>Votre email</label>
+        <input type="email" id="email" placeholder="votre@email.com" />
+        <div class="err" id="err3">Veuillez entrer un email valide.</div>
+        <div class="loading" id="loading2"><span class="spinner"></span>Envoi en cours...</div>
+        <button class="btn-main" onclick="goStep3()">Recevoir mon coupon →</button>
+        <button class="btn-prev" onclick="goTo(1)">← Précédent</button>
+      </div>
+    </div>
+
+    <div class="step" id="s3">
+      <div class="card">
+        <div class="card-title">Votre coupon -7%</div>
+        <div class="card-sub">Merci pour votre achat Nabür. Votre coupon a été envoyé à votre email.</div>
+        <div class="coupon-reveal">
+          <div class="coupon-label">Envoyé par email ✓</div>
+          <div class="coupon-code" id="coupon-display">Vérifiez votre boîte email</div>
+          <div class="coupon-validity">Valable 30 jours · Toutes marketplaces Amazon</div>
+        </div>
+        <div class="divider">
+          <div class="divider-line"></div>
+          <div class="divider-text">OPTIONNEL</div>
+          <div class="divider-line"></div>
+        </div>
+        <div class="review-box">
+          <div class="stars-display">★★★★★</div>
+          <div class="review-title">Vous avez aimé notre produit ?</div>
+          <div class="review-sub">Si vous souhaitez partager votre expérience, votre avis aide d'autres clients à découvrir Nabür. C'est entièrement facultatif.</div>
+          <button class="amazon-btn" onclick="goAmazon()">Laisser un avis sur Amazon</button>
+          <span class="skip-link" onclick="goTo(4)">Non merci, passer cette étape</span>
+        </div>
+        <button class="btn-prev" onclick="goTo(2)">← Précédent</button>
+      </div>
+    </div>
+
+    <div class="step" id="s4">
+      <div class="card" style="text-align:center;">
+        <div class="final-icon" id="final-icon">✓</div>
+        <div class="card-title" id="final-title" style="text-align:center;">Merci !</div>
+        <div class="card-sub" id="final-sub" style="text-align:center;margin-bottom:1rem;">Votre coupon a été envoyé à votre adresse email. À très bientôt !</div>
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-title">Questions fréquentes</div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Dois-je laisser un avis pour recevoir le coupon ?<span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Non. Notre offre n'est en aucun cas conditionnée à un avis. Vous recevez le coupon -7% simplement en vérifiant votre commande.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Quand vais-je recevoir mon coupon ?<span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Le coupon est envoyé immédiatement à votre adresse email. Vérifiez vos spams si vous ne le recevez pas dans les 5 minutes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Avez-vous besoin de ma carte bancaire ?<span class="faq-chevron">▼</span></button>
+        <div class="faq-a">Non, ce service est entièrement gratuit.</div>
+      </div>
+    </div>
+    <div class="footer">Nabür · Épices & Infusions · Ce site n'est pas affilié à Amazon<br>contact@nabur.co</div>
+  </div>
+</div>
+
+<script>
+const WEBHOOK_URL = '/.netlify/functions/send-coupon';
+const orderLinks={fr:'https://www.amazon.fr/gp/css/order-history',de:'https://www.amazon.de/gp/css/order-history',it:'https://www.amazon.it/gp/css/order-history',es:'https://www.amazon.es/gp/css/order-history'};
+const reviewLinks={fr:'https://www.amazon.fr/review/create-review',de:'https://www.amazon.de/review/create-review',it:'https://www.amazon.it/review/create-review',es:'https://www.amazon.es/review/create-review'};
+const stepLabels={1:'Choix du produit',2:'Votre commande',3:'Coupon & avis',4:'Confirmation'};
+const flagsMap={FR:'🇫🇷',DE:'🇩🇪',ES:'🇪🇸',IT:'🇮🇹',PL:'🇵🇱',GB:'🇬🇧',CZ:'🇨🇿',SK:'🇸🇰',SE:'🇸🇪'};
+
+const products=[
+  {id:'B0GJQ3DZ7Y',name:'Poivre Sauvage Voatsiperifery',weight:'100g',cat:'poivre',icon:'🌿',bg:'#EAF3DE',countries:['FR','DE','ES','PL']},
+  {id:'B07D8TT1XW',name:'Poivre Sauvage Voatsiperifery',weight:'250g',cat:'poivre',icon:'🌿',bg:'#EAF3DE',countries:['FR','DE','ES','PL']},
+  {id:'B0G2MP29MT',name:'Poivre de Kampot IGP',weight:'200g',cat:'poivre',icon:'🌶️',bg:'#FAECE7',countries:['FR','DE','ES','PL','CZ']},
+  {id:'B0FS1J7FWD',name:'Poivre de Madagascar',weight:'400g',cat:'poivre',icon:'🫙',bg:'#F1EFE8',countries:['FR','ES']},
+  {id:'B07QCH69K9',name:'Cannelle de Ceylan Bio',weight:'500g',cat:'epice',icon:'🪵',bg:'#FAEEDA',countries:['FR']},
+  {id:'B07YK54NFJ',name:'Stilltee Bio Nr.1',weight:'Infusion',cat:'the',icon:'🌸',bg:'#FBEAF0',countries:['FR','IT','SK']},
+  {id:'B082YHJ8RH',name:'Stilltee Bio Nr.2',weight:'Infusion',cat:'the',icon:'🌸',bg:'#FBEAF0',countries:['FR']},
+  {id:'B089LQXX61',name:'Rooibos Bio',weight:'1kg',cat:'the',icon:'🍵',bg:'#FAEEDA',countries:['FR']},
+  {id:'B07QSVC62T',name:'Rooibos Bio Nature',weight:'500g',cat:'the',icon:'🍵',bg:'#FAEEDA',countries:['FR','IT']},
+  {id:'B08JJ5LTQF',name:'Encens Hojari Oman',weight:'50g',cat:'encens',icon:'💨',bg:'#E6F1FB',countries:['FR','DE','ES','PL','CZ','SE']},
+  {id:'B07RYPGYK4',name:'Boswellia Serrata',weight:'100g',cat:'encens',icon:'🪵',bg:'#FAEEDA',countries:['FR','DE','ES','IT']},
+  {id:'B08SKZVPVL',name:'Louban Éthiopie',weight:'200g',cat:'encens',icon:'💨',bg:'#E6F1FB',countries:['FR','ES','PL','SK']},
+  {id:'B0FR2HTG9R',name:"Za'atar Palestine",weight:'250g',cat:'epice',icon:'🌿',bg:'#E1F5EE',countries:['FR','DE','ES','PL']},
+  {id:'B089C5CD69',name:'Nigelle Bio',weight:'500g',cat:'epice',icon:'🌱',bg:'#EAF3DE',countries:['FR','ES','IT']},
+  {id:'B0FTSMF91X',name:'Vanille Bourbon',weight:'40g',cat:'epice',icon:'🍦',bg:'#FAEEDA',countries:['FR','ES','IT']},
+  {id:'B0G2SN3JCG',name:'Vanille Bourbon',weight:'100g',cat:'epice',icon:'🍦',bg:'#FAEEDA',countries:['FR','ES','IT']},
+  {id:'B0GKZ42KZ6',name:'Vanille Bio Madagascar',weight:'50g',cat:'epice',icon:'🍦',bg:'#FAEEDA',countries:['FR','DE','PL']},
+  {id:'B0GG8QLMBS',name:'Gingembre Bio Titane',weight:'120g',cat:'the',icon:'🫚',bg:'#FAEEDA',countries:['FR','ES']},
+  {id:'B0GCHQ3HTC',name:'Feuilles de Séné',weight:'250g',cat:'the',icon:'🌿',bg:'#E1F5EE',countries:['FR','DE','ES','PL']},
+  {id:'B0G1YNRF53',name:'Feuilles de Framboisier Bio',weight:'200g',cat:'the',icon:'🍃',bg:'#E1F5EE',countries:['FR']},
+  {id:'B07QPHW7FN',name:'Savon Alep Original',weight:'2×400g',cat:'soin',icon:'🧴',bg:'#E6F1FB',countries:['ES']},
+  {id:'B07Q41RFWP',name:'Savon Alep 55% Laurier',weight:'2×200g',cat:'soin',icon:'🧴',bg:'#E6F1FB',countries:['GB']},
+];
+
+let selected=null,mkt='fr',currentCat='all';
+
+function updateDots(s){
+  for(let i=1;i<=4;i++){
+    const d=document.getElementById('d'+i);
+    d.className='dot';
+    if(i===s)d.classList.add('active');
+    else if(i<s)d.classList.add('done');
+  }
+  document.getElementById('step-num').textContent=s;
+  document.getElementById('step-label').textContent=stepLabels[s];
+  document.getElementById('how-it-works').style.display=s===1?'block':'none';
+}
+
+function goTo(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  updateDots(n);
+  window.scrollTo(0,0);
+}
+
+function setCat(el,cat){
+  currentCat=cat;
+  document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  render();
+}
+
+function render(){
+  const search=document.getElementById('search').value.toLowerCase();
+  const filtered=products.filter(p=>{
+    const mc=currentCat==='all'||p.cat===currentCat;
+    const ms=!search||p.name.toLowerCase().includes(search)||p.weight.toLowerCase().includes(search);
+    return mc&&ms;
+  });
+  document.getElementById('count-info').textContent=filtered.length+' produit'+(filtered.length>1?'s':'');
+  const grid=document.getElementById('grid');
+  grid.innerHTML=filtered.map(p=>{
+    const flagsHtml=p.countries.map(c=>`<span class="prod-flag">${flagsMap[c]||c}</span>`).join('');
+    return `<div class="prod-card${selected&&selected.id===p.id?' selected':''}" onclick="selectProd('${p.id}')">
+      <div class="prod-icon" style="background:${p.bg};">${p.icon}</div>
+      <div class="prod-name">${p.name}</div>
+      <div class="prod-weight">${p.weight}</div>
+      <div class="prod-flags">${flagsHtml}</div>
+      <div class="prod-check"><svg viewBox="0 0 10 10" fill="none" width="10"><path d="M2 5l2.5 2.5L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+    </div>`;
+  }).join('');
+}
+
+function selectProd(id){
+  selected=products.find(p=>p.id===id);
+  document.getElementById('sel-bar').style.display='flex';
+  document.getElementById('sel-name').textContent=selected.name+' '+selected.weight;
+  document.getElementById('btn1').disabled=false;
+  document.getElementById('recap-icon').textContent=selected.icon;
+  document.getElementById('recap-icon').style.background=selected.bg;
+  document.getElementById('recap-name').textContent=selected.name+' '+selected.weight;
+  document.getElementById('recap-flags').textContent=selected.countries.map(c=>flagsMap[c]||c).join(' ');
+  render();
+}
+
+function setMkt(el,m){
+  document.querySelectorAll('.mkt-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');mkt=m;
+  document.getElementById('find-order-link').href=orderLinks[m];
+}
+
+async function goStep3(){
+  const o=document.getElementById('order').value.trim();
+  const e=document.getElementById('email').value.trim();
+  document.getElementById('err2').style.display=o.length<5?'block':'none';
+  document.getElementById('err3').style.display=!e.includes('@')?'block':'none';
+  if(o.length<5||!e.includes('@'))return;
+
+  document.getElementById('loading2').style.display='block';
+  document.querySelector('#s2 .btn-main').disabled=true;
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: e,
+        produit: selected ? selected.name + ' ' + selected.weight : '',
+        marketplace: mkt,
+        commande: o
+      })
+    });
+  } catch(err) {
+    console.error('Webhook error:', err);
+  }
+
+  document.getElementById('loading2').style.display='none';
+  goTo(3);
+}
+
+function goAmazon(){
+  if(selected)window.open(reviewLinks[mkt]+'?asin='+selected.id,'_blank');
+  setTimeout(()=>{
+    goTo(4);
+    document.getElementById('final-icon').textContent='★';
+    document.getElementById('final-title').textContent='Merci pour votre avis !';
+  },600);
+}
+
+function toggleFaq(btn){
+  const a=btn.nextElementSibling;
+  const isOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(el=>el.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(el=>el.classList.remove('open'));
+  if(!isOpen){a.classList.add('open');btn.classList.add('open');}
+}
+
+render();
+</script>
+</body>
+</html>
